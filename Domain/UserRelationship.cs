@@ -4,14 +4,16 @@ using System.Data;
 
 namespace Domain
 {
-    public class Friend
+    public class UserRelationship
     {
 
+        [MaxLength(36)]
         [ForeignKey(nameof(User))]
         [InverseProperty(nameof(User))]
         public string RequesterId { get; set; } = default!;
         public User? Requester { get; set; }
         
+        [MaxLength(36)]
         [ForeignKey(nameof(User))]
         [InverseProperty(nameof(User))]
         public string ResponderId { get; set; } = default!;
@@ -19,6 +21,6 @@ namespace Domain
         
         public string RequesterName { get; set; } = default!;
         public string ResponderName { get; set; } = default!;
-        public string Status { get; set; } = default!;
+        public int Status { get; set; } = default!;
     }
 }

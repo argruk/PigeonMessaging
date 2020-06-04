@@ -8,7 +8,7 @@ namespace DAL
     {
         public DbSet<Message> Messages { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Friend> Friends { get; set; }
+        public DbSet<UserRelationship> UserRelationships { get; set; }
         
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -16,7 +16,7 @@ namespace DAL
         
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Friend>().HasKey(table => new {
+            builder.Entity<UserRelationship>().HasKey(table => new {
                 table.RequesterId, table.ResponderId
             });
         }

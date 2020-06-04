@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain
 {
     public class User
     {
+        [MaxLength(36)]
         public string UserId { get; set; } = default!;
 
         public string UserName { get; set; } = default!;
@@ -15,10 +17,11 @@ namespace Domain
         public string? ImageUrl { get; set; }
         public StatusIndicator StatusIndicator { get; set; } = default!;
         
-        [InverseProperty(nameof(Friend.Requester))]
-        public ICollection<Friend>? FriendRequesters { get; set; }
-        [InverseProperty(nameof(Friend.Responder))]
-        public ICollection<Friend>? FriendResponders { get; set; }
+        [InverseProperty(nameof(UserRelationship.Requester))]
+        public ICollection<UserRelationship>? UserRelationshipRequesters { get; set; }
+        [InverseProperty(nameof(UserRelationship.Responder))]
+        public ICollection<UserRelationship>? UserRelationshipResponders { get; set; }
+        
 
     }
 }

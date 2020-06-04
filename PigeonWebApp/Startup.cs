@@ -3,7 +3,6 @@ using DAL;
 using Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +32,7 @@ namespace PigeonWebApp
             services.AddSignalR();
             services.AddDbContext<AppDbContext>(options =>
                 options.UseMySql(
-                    Configuration.GetConnectionString(Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING"))));
+                    Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING", EnvironmentVariableTarget.User)));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

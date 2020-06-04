@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using DAL;
 using Domain;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.Extensions.Primitives;
 
 namespace Hubs
 {
@@ -83,6 +80,7 @@ namespace Hubs
 
                 foreach (var conn in toClientNoConnId)
                 {
+                    Console.WriteLine("ERROR: "+conn);
                     await Clients.Client(conn).SendAsync("ReceiveMessage", message);
 
                 }

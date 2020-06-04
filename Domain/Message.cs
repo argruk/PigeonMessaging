@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain
 {
     public class Message
     {
         //Locate the message in the database
+        [MaxLength(36)]
         public string MessageId { get; set; } = default!;
 
         //Can be a UserId or a GroupId (To be implemented: Make a possibility for marking
